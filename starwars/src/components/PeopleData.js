@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PeopleCard from "../components/PeopleCard";
 
-const PeopleData = props => {
-    console.log("Peoplecardprops", props.data.results);
+function PeopleData() {
+    console.log("Peopledata");
     const [data, setData] = useState();
     useEffect(() => {
         axios
             .get("https://swapi.co/api/people")
             .then(response => {
-                setData(response.data);
+                console.log(response.data.results);
+                setData(response.data.results);
             })
             .catch(error => console.log(error));
     }, []);
@@ -18,21 +19,21 @@ const PeopleData = props => {
 
     return (
         <div className="PeopleCard">
-            {data.results.map(data, index => {
+            {data.map((person, index) => {
                 return (
                     <PeopleCard
                         key={index}
-                        name={data.results.name}
-                        gender={data.results.gender}
-                        birthYear={data.results.birth_year}
-                        species={data.results.species}
-                        height={data.results.height}
-                        mass={data.results.mass}
-                        homeWorld={data.results.homeworld}
+                        name={person.name}
+                        gender={person.gender}
+                        birthYear={person.birth_year}
+                        species={person.species}
+                        height={person.height}
+                        mass={person.mass}
+                        homeWorld={person.homeworld}
                     />
                 );
             })}
         </div>
     );
-};
+}
 export default PeopleData;

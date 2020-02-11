@@ -1,10 +1,10 @@
 import React from "react";
-import PeopleCard from "./components/PeopleCard";
+import PeopleData from "./components/PeopleData";
 
 export default function App() {
     return (
         <div className="App">
-            <PeopleCard />
+            <PeopleData />
         </div>
     );
 }
